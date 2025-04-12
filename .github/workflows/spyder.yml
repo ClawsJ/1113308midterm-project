@@ -30,7 +30,7 @@ jobs:
 
       - name: 顯示結果
         run: |
-          echo "🎮 Steam 資料:"
+          echo "Steam熱門遊戲Top50:"
           cat static.csv
-          echo "💱 匯率資料:"
+          echo "YouTube音樂類型熱門影片Top15:"
           cat api.csv
