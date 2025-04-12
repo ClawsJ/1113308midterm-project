@@ -1,0 +1,36 @@
+name: Spyder爬蟲自動任務
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 4 * * *"
+
+jobs:
+  run-scripts:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 下載 GitHub 倉庫內容
+        uses: actions/checkout@v3
+
+      - name: 安裝 Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: 安裝必要套件
+        run: |
+          pip install requests beautifulsoup4
+
+      - name: 執行 static.py
+        run: python static.py
+
+      - name: 執行 api.py
+        run: python api.py
+
+      - name: 顯示結果
+        run: |
+          echo "🎮 Steam 資料:"
+          cat static.csv
+          echo "💱 匯率資料:"
+          cat api.csv
